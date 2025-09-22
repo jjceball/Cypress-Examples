@@ -1,0 +1,29 @@
+describe('template spec', () => {
+    beforeEach(() => {
+        cy.visit('https://example.cypress.io')
+    })
+
+    it('passes', () => {
+        cy.visit('https://example.cypress.io')
+    })
+
+    it('top left button text', () => {
+        cy.get('.navbar-brand').should('have.text', 'cypress.io')
+    })
+
+    it('top left button clickable', () => {
+        cy.get('.navbar-brand').click()
+        cy.url().should('include', 'example.cypress.io')
+    })
+
+    it('commands open', () => {
+        cy.get('.dropdown-toggle').contains('Commands').click()
+        cy.get('.dropdown-menu > :nth-child(1) > a').should('have.text', 'Querying')
+    })
+
+    it('utilities open and header text', () => {
+        cy.get('#navbar > :nth-child(1) > :nth-child(2) > a').contains('Utilities').click()
+        cy.get('h1').should('have.text', 'Utilities')
+    })
+})
+
