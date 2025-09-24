@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('Fundamentals Test', () => {
     beforeEach(() => {
         cy.visit('https://example.cypress.io')
     })
@@ -24,6 +24,14 @@ describe('template spec', () => {
     it('utilities open and header text', () => {
         cy.get('#navbar > :nth-child(1) > :nth-child(2) > a').contains('Utilities').click()
         cy.get('h1').should('have.text', 'Utilities')
+        cy.get('h1').should('exist')
+    })
+
+    it('type in email address', () => {
+        cy.get('.dropdown-toggle').contains('Commands').click()
+        cy.get('.dropdown-menu > :nth-child(3) > a').click()
+        cy.get('#email1').type('qa@test.com')
+        cy.get('#email1').should('have.length', 1)
     })
 })
 
