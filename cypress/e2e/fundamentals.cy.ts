@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Fundamentals Test', () => {
     beforeEach(() => {
         cy.visit('https://example.cypress.io')
@@ -35,3 +37,19 @@ describe('Fundamentals Test', () => {
     })
 })
 
+
+describe('API Testing', () => {
+    it('should retrieve a list of users', () => {
+        cy.request('GET', 'https://jsonplaceholder.typicode.com/users').then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body).to.be.an('array');
+        });
+    });
+});
+
+
+Cypress.Commands.add('login', (username: string, password: string) => {
+    cy.get('#username').type(username);
+    cy.get('#password').type(password);
+    cy.get('#login').click();
+});
