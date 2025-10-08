@@ -71,6 +71,16 @@ describe('Cleerly Home Page Validation', () => {
         cy.visit('https://cleerlyhealth.com/');
     });
 
+    describe('Small API Test for CSS', () => {
+        it.only('CSS Call Verification', () => {
+            cy.request('GET', 'https://cleerlyhealth.com/hubfs/hub_generated/template_assets/1/118398563091/1756996453314/template_slick-slider.min.css')
+                .then((response) => {
+                    expect(response.status).to.eq(200);
+                    cy.writeFile('cypress/fixtures/save_me.css', response.body);
+                });
+        });
+    });
+
     describe('Navigation Header Tests', () => {
         it('Cleerly logo + screenshot', () => {
             cy.get('.logo-sticky').should('exist');
