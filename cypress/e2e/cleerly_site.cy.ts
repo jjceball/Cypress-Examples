@@ -28,7 +28,7 @@ describe('Provider Sign In flow', () => {
                 .should('be.disabled');
             cy.get('.help').should('be.visible');
             cy.get('.help').contains('Request Access');
-            cy.screenshot('Labs CleerlyHealth Landing')
+            cy.screenshot('Labs CleerlyHealth Landing');
         });
     });
 
