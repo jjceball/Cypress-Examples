@@ -32,6 +32,22 @@ describe('Provider Sign In flow', () => {
         });
     });
 
+    // Still need to debug
+    it.skip('Small Intercept Test', () => {
+        cy.intercept('GET', '/https://labs.cleerlyhealth.com/api/labs/user?email=jjceball%40gmail.com').as('email');
+        
+        cy.origin('https://labs.cleerlyhealth.com', () => {
+            cy.get("#email").should('be.visible').type('jjceball@gmail.com');
+            cy.get('[type=submit]').click();
+        });
+
+        cy.wait('@email').then((interception) => {
+            expect(interception.response.statusCode).to.equal(200);
+            expect(interception.response.body).to.be.an('array');
+            expect(interception.response.body[0]).to.have.property('loginType', 'BASIC');
+        });
+    });
+
     it('Invalid Credentials', () => {
         cy.origin('https://labs.cleerlyhealth.com', () => {
             cy.get("#email").should('be.visible').type('jjceball@gmail.com');
@@ -72,7 +88,7 @@ describe('Cleerly Home Page Validation', () => {
     });
 
     describe('Small API Test for CSS', () => {
-        it.only('CSS Call Verification', () => {
+        it('CSS Call Verification', () => {
             cy.request('GET', 'https://cleerlyhealth.com/hubfs/hub_generated/template_assets/1/118398563091/1756996453314/template_slick-slider.min.css')
                 .then((response) => {
                     expect(response.status).to.eq(200);
