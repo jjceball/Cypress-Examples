@@ -16,10 +16,14 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^24.5.2",
-    "cypress": "^15.2.0",
+    "cypress": "^15.4.0",
+    "cypress-image-diff-js": "^2.4.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "typescript": "^5.9.2",
     "vite": "^7.1.7"
+  },
+  "dependencies": {
+    "cypress-real-events": "^1.15.0"
   }
 }

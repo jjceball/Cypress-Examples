@@ -19,6 +19,18 @@ declare namespace Cypress {
      * @example cy.waitForGitHubPage()
      */
     waitForGitHubPage(): Chainable<void>
+
+    /**
+     * Custom command to fill demo request form with fixture data
+     * @example cy.fillDemoForm()
+     */
+    fillDemoForm(): Chainable<void>
+
+    /**
+     * Custom command to complete the entire demo request workflow
+     * @example cy.completeDemoRequest()
+     */
+    completeDemoRequest(): Chainable<void>
   }
 }
 

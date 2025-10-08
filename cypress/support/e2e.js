@@ -15,3 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+// Import cypress-image-diff-js commands
+import 'cypress-image-diff-js/command'
+
