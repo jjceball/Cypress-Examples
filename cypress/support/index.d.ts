@@ -21,6 +21,12 @@ declare namespace Cypress {
     waitForGitHubPage(): Chainable<void>
 
     /**
+     * Custom command to log in with username and password
+     * @example cy.login('user', 'pass')
+     */
+    login(username: string, password: string): Chainable<void>
+
+    /**
      * Custom command to fill demo request form with fixture data
      * @example cy.fillDemoForm()
      */
