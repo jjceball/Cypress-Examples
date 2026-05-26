@@ -1,0 +1,19 @@
+{
+  "// Practice mode": "IntelliSense is OFF. Run: npm run practice:hints-on",
+  "editor.quickSuggestions": {
+    "other": "off",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.wordBasedSuggestions": "off",
+  "editor.parameterHints.enabled": false,
+  "editor.suggest.showWords": false,
+  "editor.suggest.showSnippets": false,
+  "editor.snippetSuggestions": "none",
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.inlineSuggest.enabled": false,
+  "typescript.suggest.enabled": false,
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.enabled": false
+}

@@ -10,7 +10,10 @@
     "cypress:run:chrome": "env -u ELECTRON_RUN_AS_NODE cypress run --browser chrome",
     "cypress:run:firefox": "env -u ELECTRON_RUN_AS_NODE cypress run --browser firefox",
     "cypress:run:edge": "env -u ELECTRON_RUN_AS_NODE cypress run --browser edge",
-    "test": "env -u ELECTRON_RUN_AS_NODE cypress run"
+    "test": "env -u ELECTRON_RUN_AS_NODE cypress run",
+    "practice:check": "tsc -p typescript-practice/tsconfig.json",
+    "practice:hints-off": "node scripts/toggle-practice-intellisense.mjs off",
+    "practice:hints-on": "node scripts/toggle-practice-intellisense.mjs on"
   },
   "keywords": [],
   "author": "",
