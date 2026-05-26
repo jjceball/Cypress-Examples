@@ -9,7 +9,10 @@
     "cypress:run:chrome": "cypress run --browser chrome",
     "cypress:run:firefox": "cypress run --browser firefox",
     "cypress:run:edge": "cypress run --browser edge",
-    "test": "cypress run"
+    "test": "cypress run",
+    "practice:check": "tsc -p typescript-practice/tsconfig.json",
+    "practice:hints-off": "node scripts/toggle-practice-intellisense.mjs off",
+    "practice:hints-on": "node scripts/toggle-practice-intellisense.mjs on"
   },
   "keywords": [],
   "author": "",
