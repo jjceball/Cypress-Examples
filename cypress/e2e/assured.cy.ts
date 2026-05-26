@@ -14,6 +14,12 @@ const demoFormData = {
 const headerScheduleDemoButton = () =>
   cy.get('[class*="Header-module"]').contains('button', 'Schedule a demo')
 
+const footerIntroSection = () =>
+  cy.get('[class*="FooterNavigation-module"][class*="__intro"]').first()
+
+const footerScheduleDemoButton = () =>
+  footerIntroSection().contains('button', 'Schedule a demo')
+
 /** Open demo modal (background loses `inert` when visible). */
 const openDemoModal = () =>
   cy.get('[class*="Modal-module"][class*="background"]').should(($modal) => {
@@ -34,6 +40,20 @@ const fillDemoForm = () => {
   cy.get('input[name="phone"]').type(demoFormData.phone)
 }
 
+const assertDemoModalFormFields = () => {
+  openDemoModal().within(() => {
+    cy.contains('h2', 'Ready to get in touch?').should('be.visible')
+    cy.contains('A sales representative will reach out to schedule a demo.').should(
+      'be.visible',
+    )
+    cy.get('input[placeholder="First name"]').should('be.visible')
+    cy.get('input[placeholder="Last name"]').should('be.visible')
+    cy.get('input[placeholder="Work email"]').should('be.visible')
+    cy.get('input[placeholder="Phone number"]').should('be.visible')
+    cy.get('button[type="submit"]').should('be.visible')
+  })
+}
+
 describe('Assured — Schedule a demo (header)', () => {
   beforeEach(() => {
     cy.viewport(DESKTOP_VIEWPORT.width, DESKTOP_VIEWPORT.height)
@@ -42,16 +62,7 @@ describe('Assured — Schedule a demo (header)', () => {
 
   it('opens the demo request modal when the header button is clicked', () => {
     openDemoModalFromHeader()
-
-    openDemoModal().within(() => {
-      cy.contains('A sales representative will reach out to schedule a demo.').should(
-        'be.visible',
-      )
-      cy.get('input[placeholder="First name"]').should('be.visible')
-      cy.get('input[placeholder="Last name"]').should('be.visible')
-      cy.get('input[placeholder="Work email"]').should('be.visible')
-      cy.get('button[type="submit"]').should('be.visible')
-    })
+    assertDemoModalFormFields()
   })
 
   it('does not submit the demo form when required fields are empty', () => {
@@ -103,5 +114,25 @@ describe('Assured — Schedule a demo (header)', () => {
       "We'll be in touch soon for your personalized walkthrough of the Assured platform.",
     ).should('be.visible')
     cy.contains('a', 'Back to homepage').should('have.attr', 'href', '/')
+  })
+})
+
+describe('Assured — Schedule a demo (footer)', () => {
+  beforeEach(() => {
+    cy.viewport(DESKTOP_VIEWPORT.width, DESKTOP_VIEWPORT.height)
+    cy.visit(ASSURED_URL)
+  })
+
+  it('opens the demo modal from the footer Getting started section', () => {
+    cy.scrollTo('bottom')
+
+    footerIntroSection().scrollIntoView()
+    cy.get('[class*="introTitle"]')
+      .should('be.visible')
+      .and('contain.text', 'Getting started')
+      .and('contain.text', 'is easy')
+
+    footerScheduleDemoButton().should('be.visible').click()
+    assertDemoModalFormFields()
   })
 })
